@@ -18,14 +18,17 @@
             $lesLecons = $unControleur->selectLecons_byCandidat($_GET['candidat']);
             $candidatInfo = $unControleur->selectWhere_candidat($_GET['candidat']);
             echo "<h3>Leçons de ".$candidatInfo['nomC']." ".$candidatInfo['prenomC']."</h3>";
-            echo "<a href='?page=5'>← Voir toutes les leçons</a>";
+            echo "<a href='?page=2'>← Retour à la liste des candidats</a>";
+            echo "<hr>";
+            
+            require_once('vue/vue_select_lecon.php');
+            
         } else {
             $lesLecons = $unControleur->selectAll_lecons();
+            $lesCandidats = $unControleur->selectAll_candidats();
+            $lesMoniteurs = $unControleur->selectAll_moniteurs();
+            $lesVehicules = $unControleur->selectAll_vehicules();
+            require_once('vue/vue_insert_lecon.php');
         }
-        
-        $lesCandidats = $unControleur->selectAll_candidats();
-        $lesMoniteurs = $unControleur->selectAll_moniteurs();
-        $lesVehicules = $unControleur->selectAll_vehicules();
-        require_once('vue/vue_insert_lecon.php');
     }
 ?>
