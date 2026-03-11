@@ -78,3 +78,4 @@ create table examen (
 );
 
 insert into user values (null, 'admin@admin.fr', 'adminpass', 'Admin', 'Système', 'admin');
+insert into user values (null, 'client@test.fr', 'client123', 'Lopez', 'Santana', 'client');
