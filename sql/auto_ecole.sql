@@ -56,7 +56,7 @@ create table lecon (
     duree_lecon int not null,
     compterendu text,
     constraint pk_lecon primary key (id_lecon),
-    foreign key (id_candidat) references candidat(id_candidat),
+    foreign key (id_candidat) references candidat(id_candidat) on delete cascade,
     foreign key (id_moniteur) references moniteur(id_moniteur),
     foreign key (id_vehicule) references vehicule(id_vehicule)
 );
@@ -72,7 +72,7 @@ create table examen (
     resultat enum('En attente', 'Reussi', 'Echoue') default 'En attente',
     remarques text,
     constraint pk_examen primary key (id_examen),
-    foreign key (id_candidat) references candidat(id_candidat),
+    foreign key (id_candidat) references candidat(id_candidat) on delete cascade,
     foreign key (id_moniteur) references moniteur(id_moniteur),
     foreign key (id_vehicule) references vehicule(id_vehicule)
 );

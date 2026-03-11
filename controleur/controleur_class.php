@@ -10,7 +10,7 @@ class Controleur {
     }
  
 
-    // ***************** gestion des users ***************** 
+    /***************** gestion des users *****************/ 
 
     public function select_user($email, $mdp){
         $unUser = $this->unModele->select_user($email, $mdp);
@@ -22,7 +22,7 @@ class Controleur {
     }
 
 
-    // ***************** gestion des candidats ***************** 
+    /***************** gestion des candidats *****************/ 
 
     public function insert_candidat($tab){
         $this->unModele->insert_candidat($tab);
@@ -60,7 +60,7 @@ class Controleur {
     }
 
 
-    // ***************** gestion des moniteurs ***************** 
+    /***************** gestion des moniteurs *****************/ 
 
     public function insert_moniteur($tab){
         $this->unModele->insert_moniteur($tab);
@@ -90,7 +90,7 @@ class Controleur {
     }
 
 
-    // ***************** gestion des véhicules ***************** 
+    /***************** gestion des véhicules *****************/ 
 
     public function insert_vehicule($tab){
         $this->unModele->insert_vehicule($tab);
@@ -120,7 +120,7 @@ class Controleur {
     }
 
 
-    // ***************** gestion des leçons ***************** 
+    /***************** gestion des leçons *****************/ 
 
     public function insert_lecon($tab){
         $this->unModele->insert_lecon($tab);
@@ -154,7 +154,7 @@ class Controleur {
         return $lesLecons;
     }
 
-    // ***************** gestion des examens ***************** 
+    /***************** gestion des examens *****************/ 
     
     public function insert_examen($tab){
         $this->unModele->insert_examen($tab);
@@ -192,7 +192,7 @@ class Controleur {
         return $this->unModele->count_examens_candidat($id_candidat);
     }
 
-    // ***************** gestion du calendrier ***************** 
+    /***************** gestion du calendrier des événements *****************/ 
 
     public function selectAll_evenements(){
         $lesEvenements = $this->unModele->selectAll_evenements();
@@ -206,6 +206,17 @@ class Controleur {
 
     public function selectEvenements_prochains($nbJours = 7){
         $lesEvenements = $this->unModele->selectEvenements_prochains($nbJours);
+        return $lesEvenements;
+    }
+
+    /***************** gestion du calendrier par moniteur ******************/ 
+    public function selectEvenements_byMoniteurAndMonth($id_moniteur, $annee, $mois){
+        $lesEvenements = $this->unModele->selectEvenements_byMoniteurAndMonth($id_moniteur, $annee, $mois);
+        return $lesEvenements;
+    }
+
+    public function selectEvenements_prochains_moniteur($id_moniteur, $nbJours = 7){
+        $lesEvenements = $this->unModele->selectEvenements_prochains_moniteur($id_moniteur, $nbJours);
         return $lesEvenements;
     }
 }
