@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    
+    require_once('controleur/controleur_class.php');
+    $unControleur = new Controleur();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +64,7 @@
                     case 7: 
                         session_destroy();
                         unset($_SESSION['email']);
-                        header("Location: index.php");
+                        header("Location: ../login.php");
                         break;
                     default: require_once("controleur/erreur.php"); break;
                 }  

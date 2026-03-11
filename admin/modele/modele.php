@@ -17,6 +17,15 @@
             }
         }
 
+        // Vérifier les identifiants de connexion
+        public function login($email, $mdp){
+            $requete = "select * from user where email = :email and mdp = :mdp;";
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute(array(':email' => $email, ':mdp' => $mdp));
+            $utilisateur = $exec->fetch();
+            return $utilisateur; // Retourne les infos de l'utilisateur ou false
+        }
+
                             /* gestion des users */
         
         public function select_user($email, $mdp){

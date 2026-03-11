@@ -828,3 +828,40 @@ footer {
         flex-direction: column;
     }
 }
+
+/* ========================================
+   BOUTON CONNEXION DANS LA NAVIGATION
+   ======================================== */
+.btn-login-nav {
+    background: rgba(255,255,255,0.2) !important;
+    border: 2px solid white !important;
+    padding: 6px 18px !important;
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+}
+
+.btn-login-nav:hover {
+    background: white !important;
+    color: #2e7d32 !important;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons a {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
