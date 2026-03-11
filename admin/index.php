@@ -1,10 +1,3 @@
-<?php
-    session_start();
-    
-    require_once('controleur/controleur_class.php');
-    $unControleur = new Controleur();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

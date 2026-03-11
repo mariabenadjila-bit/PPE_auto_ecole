@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - CASTELLANE-AUTO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🚗 CASTELLANE-AUTO</h1>
+                <p class="slogan">Votre auto-école de confiance depuis 1981</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="tarifs.html">Tarifs</a></li>
+                    <li><a href="photos.html">Nos Véhicules</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contactez-nous</h1>
+            <p>Nous sommes à votre écoute pour répondre à toutes vos questions</p>
+        </div>
+    </section>
+
+    <!-- Contact principal -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Formulaire de contact -->
+                <div class="contact-form-container">
+                    <h2>Envoyez-nous un message</h2>
+                    <form class="contact-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prenom">Prénom *</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone" placeholder="06 XX XX XX XX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sujet">Sujet *</label>
+                            <select id="sujet" name="sujet" required>
+                                <option value="">-- Choisissez un sujet --</option>
+                                <option value="inscription">Demande d'inscription</option>
+                                <option value="renseignement">Demande de renseignement</option>
+                                <option value="tarif">Question sur les tarifs</option>
+                                <option value="planning">Disponibilité / Planning</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Votre message *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Décrivez votre demande..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Envoyer le message</button>
+                        <p class="form-note">* Champs obligatoires</p>
+                    </form>
+                </div>
+
+                <!-- Informations de contact -->
+                <div class="contact-info">
+                    <h2>Nos Coordonnées</h2>
+                    
+                    <div class="info-block">
+                        <h3>📍 Adresse</h3>
+                        <p>
+                            <strong>CASTELLANE-AUTO</strong><br>
+                            27 boulevard du Général-de-Gaulle<br>
+                            83100 TOULON Cedex
+                        </p>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>📞 Téléphone</h3>
+                        <p>
+                            <strong>04 XX XX XX XX</strong><br>
+                            Du lundi au vendredi : 9h - 19h<br>
+                            Samedi : 9h - 12h
+                        </p>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>✉️ Email</h3>
+                        <p>
+                            <strong>contact@castellane-auto.fr</strong><br>
+                            Réponse sous 24h ouvrées
+                        </p>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>🕒 Horaires d'ouverture</h3>
+                        <table class="horaires-table">
+                            <tr>
+                                <td>Lundi</td>
+                                <td>9h - 12h / 14h - 19h</td>
+                            </tr>
+                            <tr>
+                                <td>Mardi</td>
+                                <td>9h - 12h / 14h - 19h</td>
+                            </tr>
+                            <tr>
+                                <td>Mercredi</td>
+                                <td>9h - 12h / 14h - 19h</td>
+                            </tr>
+                            <tr>
+                                <td>Jeudi</td>
+                                <td>9h - 12h / 14h - 19h</td>
+                            </tr>
+                            <tr>
+                                <td>Vendredi</td>
+                                <td>9h - 12h / 14h - 19h</td>
+                            </tr>
+                            <tr>
+                                <td>Samedi</td>
+                                <td>9h - 12h</td>
+                            </tr>
+                            <tr>
+                                <td>Dimanche</td>
+                                <td>Fermé</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>🏢 Informations légales</h3>
+                        <p>
+                            <strong>Directrice :</strong> Mme LEJARS<br>
+                            <strong>SIRET :</strong> 421 896 333 00059<br>
+                            <strong>Fondée en :</strong> Septembre 1981
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan d'accès -->
+    <section class="map-section">
+        <div class="container">
+            <h2>📍 Plan d'Accès</h2>
+            <div class="map-placeholder">
+                <p>🗺️ Carte interactive</p>
+                <p><strong>27 boulevard du Général-de-Gaulle, 83100 TOULON</strong></p>
+                <p>En plein centre de Toulon, facilement accessible en voiture ou en transports en commun</p>
+                <div class="map-info">
+                    <div class="map-item">
+                        <strong>🚗 En voiture :</strong> Parking à proximité
+                    </div>
+                    <div class="map-item">
+                        <strong>🚌 En bus :</strong> Lignes 3, 7, 23 - Arrêt Général-de-Gaulle
+                    </div>
+                    <div class="map-item">
+                        <strong>🚊 En tramway :</strong> Ligne T1 - Arrêt République
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ rapide -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>❓ Questions Fréquentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Quels documents pour l'inscription ?</h3>
+                    <p>Pièce d'identité, justificatif de domicile, 4 photos d'identité, attestation ASSR2 (si - de 21 ans)</p>
+                </div>
+                <div class="faq-item">
+                    <h3>À partir de quel âge puis-je m'inscrire ?</h3>
+                    <p>17 ans pour le permis B classique, 15 ans pour la conduite accompagnée, 14 ans pour le BSR</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Combien de temps dure la formation ?</h3>
+                    <p>En moyenne 3 à 6 mois selon votre disponibilité et votre progression</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Proposez-vous des cours le soir et le samedi ?</h3>
+                    <p>Oui, nos moniteurs sont disponibles du lundi au samedi, avec des créneaux en soirée jusqu'à 19h</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Vous préférez venir nous voir directement ?</h2>
+            <p>Notre équipe vous accueille du lundi au samedi dans nos locaux</p>
+            <div class="cta-buttons">
+                <a href="tarifs.html" class="btn-secondary">Voir les tarifs</a>
+                <a href="index.html" class="btn-primary">Retour à l'accueil</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>CASTELLANE-AUTO</h3>
+                    <p>Auto-école fondée en 1981</p>
+                    <p>SIRET : 421 896 333 00059</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Adresse</h3>
+                    <p>27 boulevard du Général-de-Gaulle</p>
+                    <p>83100 TOULON Cedex</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Horaires</h3>
+                    <p>Lundi - Vendredi : 9h - 19h</p>
+                    <p>Samedi : 9h - 12h</p>
+                    <p>Dimanche : Fermé</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <p>📞 04 XX XX XX XX</p>
+                    <p>✉️ contact@castellane-auto.fr</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CASTELLANE-AUTO - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

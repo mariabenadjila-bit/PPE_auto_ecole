@@ -8,7 +8,7 @@ create table user (
     mdp varchar(100) not null,
     nom varchar(50) not null,
     prenom varchar(50) not null,
-    role varchar(20) not null,
+    role varchar(20) enum('admin', 'moniteur', 'client') default 'client',
     constraint pk_user primary key (id_user)
 );
 
