@@ -1,6 +1,11 @@
 <?php
     session_start();
-    
+
+    if (!isset($_SESSION['id_user'])) {
+    header('Location: ../login.php');
+    exit();
+    }
+
     require_once('controleur/controleur_class.php');
     $unControleur = new Controleur();
 ?>
@@ -16,26 +21,6 @@
     <center>
         <h1>Bienvenue sur le site de gestion d'auto-école</h1>
         <?php
-            if (!isset($_SESSION['email'])) {
-                require_once("vue/vue_connexion.php");
-            }
-            
-            if (isset($_POST['Connexion'])) {
-                $email = $_POST['email'];
-                $mdp   = $_POST['mdp'];
-
-                $unUser = $unControleur->select_user($email, $mdp);
-                if ($unUser == null) {
-                    echo "<br> Veuillez vérifier vos identifiants.";
-                } else {
-                    $_SESSION['email'] = $unUser['email'];
-                    $_SESSION['nom'] = $unUser['nom'];
-                    $_SESSION['prenom'] = $unUser['prenom'];
-                    $_SESSION['role'] = $unUser['role'];
-                    header("Location: index.php?page=1"); 
-                }  
-            }
-
             if (isset($_SESSION['email'])) {
                 echo '
                 <a href="index.php?page=1"> <img src="images/logoAutoEcole.png" width="100" height="100" alt="Accueil"></a>
@@ -44,7 +29,8 @@
                 <a href="index.php?page=4"> <img src="images/vehicule.png"      width="100" height="100" alt="Véhicules"></a>
                 <a href="index.php?page=5"> <img src="images/lecon.png"         width="100" height="100" alt="Leçons"></a>
                 <a href="index.php?page=6"> <img src="images/examen.png"        width="100" height="100" alt="Examens"></a>
-                <a href="index.php?page=7"> <img src="images/deconnexion.jpg"   width="100" height="100" alt="Déconnexion"></a>
+                <a href="index.php?page=7"> <img src="images/demandes.png"      width="100" height="100" alt="Demandes"></a>
+                <a href="index.php?page=8"> <img src="images/deconnexion.jpg"   width="100" height="100" alt="Déconnexion"></a>
                 ';
 
                 
@@ -61,13 +47,14 @@
                     case 4: require_once("controleur/gestion_vehicules.php"); break;
                     case 5: require_once("controleur/gestion_lecons.php"); break;
                     case 6: require_once("controleur/gestion_examens.php"); break;
-                    case 7: 
+                    case 7: require_once("controleur/gestion_demandes.php"); break;
+                    case 8: 
                         session_destroy();
                         unset($_SESSION['email']);
                         header("Location: ../login.php");
                         break;
                     default: require_once("controleur/erreur.php"); break;
-                }  
+                }
             }
         ?>
     </center>

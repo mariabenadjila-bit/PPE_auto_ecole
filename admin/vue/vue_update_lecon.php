@@ -1,3 +1,24 @@
+<?php
+    $messageSucces = false;
+    
+    if (isset($_POST['ModifierLecon'])) {
+        $tab = array(
+            "id_lecon" => $_GET['id'],
+            "id_candidat" => $_POST['id_candidat'],
+            "id_moniteur" => $_POST['id_moniteur'],
+            "id_vehicule" => !empty($_POST['id_vehicule']) ? $_POST['id_vehicule'] : null,
+            "date_lecon" => $_POST['date_lecon'],
+            "libelle" => $_POST['libelle'],
+            "duree_lecon" => $_POST['duree_lecon'],
+            "compterendu" => $_POST['compterendu']
+        );
+        $unControleur->update_lecon($tab);
+        
+        $messageSucces = true;
+        echo "<meta http-equiv='refresh' content='1;url=index.php?page=5'>";
+    }
+?>
+
 <h3>Modification d'une leçon</h3>
 
 <form method="post">
@@ -87,20 +108,13 @@
     </table>
 </form>
 
-<?php
-    if (isset($_POST['ModifierLecon'])) {
-        $tab = array(
-            "id_lecon" => $_GET['id'],
-            "id_candidat" => $_POST['id_candidat'],
-            "id_moniteur" => $_POST['id_moniteur'],
-            "id_vehicule" => !empty($_POST['id_vehicule']) ? $_POST['id_vehicule'] : null,
-            "date_lecon" => $_POST['date_lecon'],
-            "libelle" => $_POST['libelle'],
-            "duree_lecon" => $_POST['duree_lecon'],
-            "compterendu" => $_POST['compterendu']
-        );
-        $unControleur->update_lecon($tab);
-        echo "<p style='color: green;'>Leçon modifiée avec succès !</p>";
-        header("Refresh:1; url=index.php?page=5");
-    }
-?>
+<?php if ($messageSucces): ?>
+    <p id="message-succes" style="color: green;">Leçon modifiée avec succès !</p>
+    <script>
+        setTimeout(function() {
+            document.getElementById('message-succes').style.opacity = '0';
+        }, 800);
+    </script>
+<?php endif; ?>
+     
+

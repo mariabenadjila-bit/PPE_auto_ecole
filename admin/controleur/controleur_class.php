@@ -8,6 +8,12 @@
             $this->unModele = new Modele();
         }
     
+        /***************** inscription *****************/
+        
+        public function verifierEmailExiste($email){
+            $existe = $this->unModele->verifierEmailExiste($email);
+            return $existe;
+        }
 
         /***************** gestion des users *****************/ 
 
@@ -18,6 +24,11 @@
 
         public function insert_user($tab){
             $this->unModele->insert_user($tab);
+        }
+
+        public function login($email, $mdp){
+            $utilisateur = $this->unModele->login($email, $mdp);
+            return $utilisateur;
         }
 
 
@@ -209,6 +220,7 @@
         }
 
         /***************** gestion du calendrier par moniteur ******************/ 
+
         public function selectEvenements_byMoniteurAndMonth($id_moniteur, $annee, $mois){
             $lesEvenements = $this->unModele->selectEvenements_byMoniteurAndMonth($id_moniteur, $annee, $mois);
             return $lesEvenements;
@@ -219,13 +231,59 @@
             return $lesEvenements;
         }
 
-        // Connexion utilisateur
-        public function login($email, $mdp){
-            $utilisateur = $this->unModele->login($email, $mdp);
-            return $utilisateur;
+
+        /***************** fonctions espace client *****************/
+    
+        public function selectCandidatByEmail($email){
+            $candidat = $this->unModele->selectCandidatByEmail($email);
+            return $candidat;
+        }
+        
+        public function selectProchaines_lecons_candidat($id_candidat, $nbJours = 30){
+            $lecons = $this->unModele->selectProchaines_lecons_candidat($id_candidat, $nbJours);
+            return $lecons;
+        }
+        
+        public function selectProchains_examens_candidat($id_candidat){
+            $examens = $this->unModele->selectProchains_examens_candidat($id_candidat);
+            return $examens;
+        }
+        
+        public function selectHistorique_lecons_candidat($id_candidat){
+            $lecons = $this->unModele->selectHistorique_lecons_candidat($id_candidat);
+            return $lecons;
+        }
+        
+        public function verifierDisponibilite($date_lecon, $id_moniteur, $id_vehicule, $duree_lecon){
+            $disponible = $this->unModele->verifierDisponibilite($date_lecon, $id_moniteur, $id_vehicule, $duree_lecon);
+            return $disponible;
+        }
+
+        // Récupérer un candidat par nom et prénom
+        public function selectCandidatByNomPrenom($nom, $prenom){
+            $candidat = $this->unModele->selectCandidatByNomPrenom($nom, $prenom);
+            return $candidat;
+        }
+
+        /***************** gestion demandes client *****************/
+        
+        public function selectDemandes_lecons_attente(){
+            $demandes = $this->unModele->selectDemandes_lecons_attente();
+            return $demandes;
+        }
+        
+        public function selectDemandes_examens_attente(){
+            $demandes = $this->unModele->selectDemandes_examens_attente();
+            return $demandes;
+        }
+        
+        public function attribuerMoniteurVehicule_lecon($id_lecon, $id_moniteur, $id_vehicule){
+            $this->unModele->attribuerMoniteurVehicule_lecon($id_lecon, $id_moniteur, $id_vehicule);
+        }
+        
+        public function attribuerMoniteurVehicule_examen($id_examen, $id_moniteur, $id_vehicule){
+            $this->unModele->attribuerMoniteurVehicule_examen($id_examen, $id_moniteur, $id_vehicule);
         }
     }
-
-    
  
 ?>

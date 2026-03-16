@@ -8,7 +8,7 @@
             <th>Type de cours</th>
             <th>Date et heure</th>
             <th>Durée</th>
-            <th>Compte-rendu</th>
+            <th>Description</th>
             <th>Actions</th>
         </tr>
     </thead>

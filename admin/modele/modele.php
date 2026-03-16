@@ -17,13 +17,22 @@
             }
         }
 
-        // Vérifier les identifiants de connexion
         public function login($email, $mdp){
             $requete = "select * from user where email = :email and mdp = :mdp;";
             $exec = $this->unPdo->prepare($requete);
             $exec->execute(array(':email' => $email, ':mdp' => $mdp));
             $utilisateur = $exec->fetch();
-            return $utilisateur; // Retourne les infos de l'utilisateur ou false
+            return $utilisateur;
+        }
+
+                            /* inscription */
+    
+        public function verifierEmailExiste($email){
+            $requete = "select count(*) as nb from user where email = :email;";
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute(array(':email' => $email));
+            $result = $exec->fetch();
+            return $result['nb'] > 0;
         }
 
                             /* gestion des users */
@@ -766,6 +775,172 @@
             $exec = $this->unPdo->prepare($requete);
             $exec->execute(array(':id_moniteur' => $id_moniteur, ':dateDebut' => $dateDebut, ':dateFin' => $dateFin));
             return $exec->fetchAll();
+        }
+
+                            /* fonction espace client */
+    
+        public function selectCandidatByEmail($email){
+            $requete = "select u.*, c.* 
+                        from user u
+                        left join candidat c on u.email = concat(lower(c.prenomC), '.', lower(c.nomC), '@autoecole.fr')
+                        where u.email = :email;";
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute(array(':email' => $email));
+            $result = $exec->fetch();
+            
+            if (!$result || !isset($result['id_candidat'])) {
+                $requete2 = "select c.* from candidat c where concat(lower(c.prenomC), '.', lower(c.nomC), '@autoecole.fr') = :email;";
+                $exec2 = $this->unPdo->prepare($requete2);
+                $exec2->execute(array(':email' => $email));
+                $result = $exec2->fetch();
+            }
+            
+            return $result;
+        }
+
+        public function selectCandidatByNomPrenom($nom, $prenom){
+            $requete = "select * from candidat where nomC = :nom and prenomC = :prenom;";
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute(array(':nom' => $nom, ':prenom' => $prenom));
+            return $exec->fetch();
+        }
+    
+
+        public function selectProchaines_lecons_candidat($id_candidat, $nbJours = 30){
+            $dateDebut = date('d-m-Y');
+            $dateFin = date('d-m-Y', strtotime("+$nbJours days"));
+            
+            $requete = "select l.*, c.nomC, c.prenomC, m.nomM, m.prenomM, v.immat, v.marque, v.modele
+                        from lecon l
+                        left join candidat c on l.id_candidat = c.id_candidat
+                        left join moniteur m on l.id_moniteur = m.id_moniteur
+                        left join vehicule v on l.id_vehicule = v.id_vehicule
+                        where l.id_candidat = :id_candidat
+                        and date(l.date_lecon) between :dateDebut and :dateFin
+                        order by l.date_lecon asc;";
+            
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute(array(':id_candidat' => $id_candidat, ':dateDebut' => $dateDebut, ':dateFin' => $dateFin));
+            return $exec->fetchAll();
+        }
+        
+        public function selectProchains_examens_candidat($id_candidat){
+            $requete = "select e.*, c.nomC, c.prenomC, m.nomM, m.prenomM
+                        from examen e
+                        left join candidat c on e.id_candidat = c.id_candidat
+                        left join moniteur m on e.id_moniteur = m.id_moniteur
+                        where e.id_candidat = :id_candidat
+                        order by e.date_examen desc;";
+            
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute(array(':id_candidat' => $id_candidat));
+            return $exec->fetchAll();
+        }
+        
+        public function selectHistorique_lecons_candidat($id_candidat){
+            $dateAujourdhui = date('d-m-Y');
+            
+            $requete = "select l.*, c.nomC, c.prenomC, m.nomM, m.prenomM, v.immat, v.marque, v.modele
+                        from lecon l
+                        left join candidat c on l.id_candidat = c.id_candidat
+                        left join moniteur m on l.id_moniteur = m.id_moniteur
+                        left join vehicule v on l.id_vehicule = v.id_vehicule
+                        where l.id_candidat = :id_candidat
+                        and date(l.date_lecon) < :dateAujourdhui
+                        order by l.date_lecon desc;";
+            
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute(array(':id_candidat' => $id_candidat, ':dateAujourdhui' => $dateAujourdhui));
+            return $exec->fetchAll();
+        }
+
+                            /* reservation client */
+    
+        public function verifierDisponibilite($date_lecon, $id_moniteur, $id_vehicule, $duree_lecon){
+            $dateDebut = date('d-m-Y H:i:s', strtotime($date_lecon));
+            $dateFin = date('d-m-Y H:i:s', strtotime($date_lecon . ' +' . $duree_lecon . ' minutes'));
+            
+            if (!empty($id_moniteur)) {
+                $requete1 = "select count(*) as nb from lecon 
+                            where id_moniteur = :id_moniteur
+                            and ((date_lecon between :dateDebut and :dateFin)
+                            or (date_add(date_lecon, interval duree_lecon minute) between :dateDebut and :dateFin));";
+                $exec1 = $this->unPdo->prepare($requete1);
+                $exec1->execute(array(':id_moniteur' => $id_moniteur, ':dateDebut' => $dateDebut, ':dateFin' => $dateFin));
+                $result1 = $exec1->fetch();
+                
+                if ($result1['nb'] > 0) {
+                    return false; 
+                }
+            }
+            
+            if (!empty($id_vehicule)) {
+                $requete2 = "select count(*) as nb from lecon 
+                            where id_vehicule = :id_vehicule
+                            and ((date_lecon between :dateDebut and :dateFin)
+                            or (date_add(date_lecon, interval duree_lecon minute) between :dateDebut and :dateFin));";
+                $exec2 = $this->unPdo->prepare($requete2);
+                $exec2->execute(array(':id_vehicule' => $id_vehicule, ':dateDebut' => $dateDebut, ':dateFin' => $dateFin));
+                $result2 = $exec2->fetch();
+                
+                if ($result2['nb'] > 0) {
+                }
+            }
+            return true;
+        }
+
+                            /* gestion des demandes */
+        
+        public function selectDemandes_lecons_attente(){
+            $requete = "select l.*, c.nomC, c.prenomC, c.telephoneC 
+                        from lecon l
+                        inner join candidat c on l.id_candidat = c.id_candidat
+                        where l.id_moniteur is null
+                        and l.date_lecon >= CURDATE()
+                        order by l.date_lecon asc;";
+            $exec = $this->unPdo->query($requete);
+            return $exec->fetchAll();
+        }
+        
+        public function selectDemandes_examens_attente(){
+            $requete = "select e.*, c.nomC, c.prenomC, c.telephoneC 
+                        from examen e
+                        inner join candidat c on e.id_candidat = c.id_candidat
+                        where e.remarques like '%Réservation en ligne%'
+                        and e.date_examen >= CURDATE()
+                        order by e.date_examen asc;";
+            $exec = $this->unPdo->query($requete);
+            return $exec->fetchAll();
+        }
+        
+        public function attribuerMoniteurVehicule_lecon($id_lecon, $id_moniteur, $id_vehicule){
+            $requete = "update lecon 
+                        set id_moniteur = :id_moniteur, 
+                            id_vehicule = :id_vehicule,
+                            compterendu = 'Confirmé par l\'auto-école'
+                        where id_lecon = :id_lecon;";
+            $donnees = array(
+                ':id_lecon' => $id_lecon,
+                ':id_moniteur' => $id_moniteur,
+                ':id_vehicule' => $id_vehicule
+            );
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute($donnees);
+        }
+        
+        public function attribuerMoniteurVehicule_examen($id_examen, $id_moniteur, $id_vehicule){
+            $requete = "update examen 
+                        set id_moniteur = :id_moniteur, 
+                            id_vehicule = :id_vehicule,
+                            remarques = 'Confirmé par l\'auto-école'
+                        where id_examen = :id_examen;";
+            $donnees = array(
+                ':id_examen' => $id_examen,
+                ':id_moniteur' => $id_moniteur,
+                ':id_vehicule' => $id_vehicule
+            );
+            $exec = $this->unPdo->prepare($requete);
+            $exec->execute($donnees);
         }
     }
 ?>
