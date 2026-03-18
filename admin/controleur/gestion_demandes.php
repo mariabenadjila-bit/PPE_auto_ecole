@@ -262,7 +262,7 @@
                             <div class="form-group">
                                 <label for="id_vehicule_<?php echo $lecon['id_lecon']; ?>">Attribuer véhicule</label>
                                 <select name="id_vehicule" id="id_vehicule_<?php echo $lecon['id_lecon']; ?>">
-                                    <option value="">-- Aucun (Code/BSR) --</option>
+                                    <option value="">-- Aucun --</option>
                                     <?php foreach ($lesVehicules as $vehicule): ?>
                                         <option value="<?php echo $vehicule['id_vehicule']; ?>">
                                             <?php echo $vehicule['marque'] . ' ' . $vehicule['modele'] . ' (' . $vehicule['immat'] . ')'; ?>
@@ -303,10 +303,10 @@
                         <div class="demande-header">
                             <div>
                                 <div class="candidat-info">
-                                    👤 <?php echo $examen['nomC'] . ' ' . $examen['prenomC']; ?>
+                                    <?php echo $examen['nomC'] . ' ' . $examen['prenomC']; ?>
                                 </div>
                                 <div class="date-info">
-                                    Demandé le : <?php echo date('d/m/Y', strtotime($examen['date_examen'])); ?>
+                                    Demandé le : <?php echo date('d/m/Y à H:i', strtotime($examen['date_examen'])); ?>
                                 </div>
                             </div>
                         </div>
@@ -317,8 +317,8 @@
                                 <div class="detail-value"><?php echo $examen['type_examen']; ?></div>
                             </div>
                             <div class="detail-item">
-                                <div class="detail-label">Date souhaitée</div>
-                                <div class="detail-value"><?php echo date('d/m/Y', strtotime($examen['date_examen'])); ?></div>
+                                <div class="detail-label">Date et heure</div>
+                                <div class="detail-value"><?php echo date('d/m/Y à H:i', strtotime($examen['date_examen'])); ?></div>
                             </div>
                             <div class="detail-item">
                                 <div class="detail-label">Lieu</div>
@@ -334,9 +334,9 @@
                             <input type="hidden" name="id_examen" value="<?php echo $examen['id_examen']; ?>">
                             
                             <div class="form-group">
-                                <label for="id_moniteur_ex_<?php echo $examen['id_examen']; ?>">Attribuer moniteur</label>
-                                <select name="id_moniteur" id="id_moniteur_ex_<?php echo $examen['id_examen']; ?>">
-                                    <option value="">-- Aucun --</option>
+                                <label for="id_moniteur_ex_<?php echo $examen['id_examen']; ?>">Attribuer moniteur *</label>
+                                <select name="id_moniteur" id="id_moniteur_ex_<?php echo $examen['id_examen']; ?>" required>
+                                    <option value="">-- Choisir --</option>
                                     <?php foreach ($lesMoniteurs as $moniteur): ?>
                                         <option value="<?php echo $moniteur['id_moniteur']; ?>">
                                             <?php echo $moniteur['nomM'] . ' ' . $moniteur['prenomM']; ?>

@@ -241,9 +241,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="date_lecon">Date et heure souhaitées *</label>
-                    <input type="datetime-local" id="date_lecon" name="date_lecon" 
-                           min="<?php echo date('d-m-Y\TH:i', strtotime('+15 days')); ?>" 
+                    <label for="date_examen">Date et heure souhaitées *</label>
+                    <input type="datetime-local" id="date_examen" name="date_examen" 
+                           min="<?php echo date('Y-m-d\TH:i', strtotime('+15 days')); ?>" 
                            required>
                     <small style="color: #666;"><em>Minimum 15 jours à l'avance</em></small>
                 </div>

@@ -289,6 +289,7 @@
                 <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
                     <a href="reserver-lecon.php" class="btn-primary">Réserver une leçon</a>
                     <a href="reserver-examen.php" class="btn-primary">S'inscrire à un examen</a>
+                    <a href="entrainement-code.php" class="btn-primary">S'entraîner au code</a>
                 </div>
             </div>
 

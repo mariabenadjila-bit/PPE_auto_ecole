@@ -241,7 +241,7 @@
                 <div class="form-group">
                     <label for="date_lecon">Date et heure souhaitées *</label>
                     <input type="datetime-local" id="date_lecon" name="date_lecon" 
-                           min="<?php echo date('d-m-Y\TH:i', strtotime('+48 hours')); ?>" 
+                           min="<?php echo date('Y-m-d\TH:i', strtotime('+48 hours')); ?>" 
                            required>
                     <small style="color: #666;"><em>Minimum 48h à l'avance</em></small>
                 </div>
