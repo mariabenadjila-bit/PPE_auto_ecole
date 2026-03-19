@@ -839,7 +839,7 @@
         }
         
         public function selectHistorique_lecons_candidat($id_candidat){
-            $dateAujourdhui = date('d-m-Y');
+            $dateAujourdhui = date('Y-m-d');
             
             $requete = "select l.*, c.nomC, c.prenomC, m.nomM, m.prenomM, v.immat, v.marque, v.modele
                         from lecon l

@@ -157,14 +157,13 @@
 <body>
     <div class="login-container">
         <div class="logo">
-            <h1>🚗 CASTELLANE-AUTO</h1>
+            <h1>Castellane-auto</h1>
             <p>Connexion à votre espace</p>
         </div>
 
         <?php
         session_start();
 
-        // Si déjà connecté, rediriger
         if (isset($_SESSION['id_user'])) {
             $role = $_SESSION['role'];
             if ($role == 'admin' || $role == 'moniteur') {
@@ -230,18 +229,6 @@
                 Se connecter
             </button>
         </form>
-
-        <div class="info-box">
-            💡 <strong>Accès selon votre profil :</strong><br>
-            • Admin/Moniteur → Gestion complète<br>
-            • Client → Réservation de cours
-        </div>
-
-        <div class="role-badges">
-            <span class="role-badge badge-admin">👨‍💼 Admin</span>
-            <span class="role-badge badge-moniteur">👨‍🏫 Moniteur</span>
-            <span class="role-badge badge-client">👤 Client</span>
-        </div>
 
         <div class="link-signup" style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
             Pas encore de compte ? <a href="inscription.php" style="color: #4caf50; text-decoration: none; font-weight: 600;">S'inscrire</a>

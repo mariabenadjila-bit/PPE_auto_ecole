@@ -57,16 +57,17 @@
         }
 
         .section-title {
-            background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
+            background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
             color: white;
             padding: 15px 20px;
             border-radius: 8px;
             margin: 30px 0 20px 0;
             font-size: 20px;
+            box-shadow: 0 3px 15px rgba(198, 40, 40, 0.3);
         }
 
         .badge-attente {
-            background: #ff9800;
+            background: #ff6b6b;
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
@@ -83,10 +84,16 @@
 
         .demande-card {
             background: white;
-            border: 2px solid #ff9800;
+            border: 2px solid #ff6b6b;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .demande-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(198, 40, 40, 0.2);
         }
 
         .demande-header {
@@ -101,7 +108,7 @@
         .candidat-info {
             font-size: 18px;
             font-weight: 600;
-            color: #2e7d32;
+            color: #c62828;
         }
 
         .date-info {
@@ -118,8 +125,9 @@
 
         .detail-item {
             padding: 10px;
-            background: #f5f5f5;
+            background: #ffebee;
             border-radius: 5px;
+            border-left: 3px solid #d32f2f;
         }
 
         .detail-label {
@@ -158,6 +166,13 @@
             border: 2px solid #e0e0e0;
             border-radius: 5px;
             font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #d32f2f;
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
         }
 
         .btn {
@@ -170,21 +185,26 @@
         }
 
         .btn-valider {
-            background: #4caf50;
+            background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
             color: white;
+            box-shadow: 0 2px 10px rgba(198, 40, 40, 0.3);
         }
 
         .btn-valider:hover {
-            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(198, 40, 40, 0.4);
         }
 
         .btn-refuser {
-            background: #f44336;
+            background: #b71c1c;
             color: white;
+            box-shadow: 0 2px 10px rgba(183, 28, 28, 0.3);
         }
 
         .btn-refuser:hover {
-            background: #da190b;
+            background: #8b0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(183, 28, 28, 0.4);
         }
 
         .empty-state {
@@ -196,6 +216,16 @@
         .empty-state-icon {
             font-size: 64px;
             margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .attribution-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .demande-details {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
