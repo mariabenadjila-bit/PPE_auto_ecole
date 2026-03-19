@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
     $messageSucces = false;
     
     if (isset($_POST['ValiderExamen'])) {
@@ -137,7 +137,7 @@ window.onload = function() {
         document.getElementById('message-succes').style.opacity = '0';
     }, 800);
 </script>
-<?php endif; ?>
+<?php endif; ?> -->
 
 <hr>
 <h3>Liste des examens</h3>

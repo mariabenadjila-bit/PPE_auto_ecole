@@ -1,4 +1,4 @@
-<h3>Ajout d'une leçon</h3>
+<!-- <h3>Ajout d'une leçon</h3>
 
 <form method="post">
     <table>
@@ -103,7 +103,7 @@
         echo "<br><p style='color: green;'>Leçon ajoutée avec succès !</p>";
         header("Refresh:1");
     }
-?>
+?> -->
 
 <hr>
 <h3>Liste des leçons</h3>

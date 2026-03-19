@@ -1,4 +1,4 @@
-<h3>Ajout d'un candidat</h3>
+<!-- <h3>Ajout d'un candidat</h3>
 
 <form method="post">
     <table>
@@ -47,7 +47,7 @@
         echo "<br><p style='color: green;'>Candidat ajouté avec succès !</p>";
         header("Refresh:1");
     }
-?>
+?> -->
 
 <hr>
 <h3>Liste des candidats</h3>

@@ -11,15 +11,15 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestion Auto-École - Castellane-auto</title>
 </head>
 <body>
     <center>
-        <h1>Bienvenue sur le site de gestion d'auto-école</h1>
+        <h1>Bienvenue sur le site de gestion Castellane-auto</h1>
         <?php
             if (isset($_SESSION['email'])) {
                 echo '
